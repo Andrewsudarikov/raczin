@@ -127,18 +127,30 @@ class OperationsWindow(Gtk.Window):
         TaskNum = random.randint(1,990)
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
+        TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
+        self.TaskData.set_text(TaskData_Placeholder_Text)
+        TaskQuestion_Placeholder_Text = "Here will be the question for the task number "+ str(TaskNum) +"."
+        self.TaskQuestion.set_markup("<i>%s</i>" % TaskQuestion_Placeholder_Text)
 # Operating btnPrev function
     def task_previous_clicked(self,btnPrev):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString) - 1
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
+        TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
+        self.TaskData.set_text(TaskData_Placeholder_Text)
+        TaskQuestion_Placeholder_Text = "Here will be the question for the task number "+ str(TaskNum) +"."
+        self.TaskQuestion.set_markup("<i>%s</i>" % TaskQuestion_Placeholder_Text)
 # Operating btnNext function
     def task_next_clicked(self,btnPrev):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString) + 1
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
+        TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
+        self.TaskData.set_text(TaskData_Placeholder_Text)
+        TaskQuestion_Placeholder_Text = "Here will be the question for the task number "+ str(TaskNum) +"."
+        self.TaskQuestion.set_markup("<i>%s</i>" % TaskQuestion_Placeholder_Text)
 # Operating Settings button
     def settings_clicked(self,btnSettings):
 # Setting up Settings menu popover window
@@ -152,16 +164,21 @@ class OperationsWindow(Gtk.Window):
         self.Settings_DifficultyBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         Gtk.StyleContext.add_class(self.Settings_DifficultyBox.get_style_context(), "linked")
 # Setting up difficulty level selector toggle buttons
-        btnEasy = Gtk.ToggleButton(label='Easy')
-        btnEasy.set_size_request(-1, 34)
-        self.Settings_DifficultyBox.pack_start(btnEasy, True, True, 0)
-        btnNormal = Gtk.ToggleButton(label="Normal")
-        btnNormal.set_size_request(-1, 34)
-        btnNormal.set_active(True)
-        self.Settings_DifficultyBox.pack_start(btnNormal, True, True, 0)
-        btnHard = Gtk.ToggleButton(label="Hard")
-        btnHard.set_size_request(-1, 34)
-        self.Settings_DifficultyBox.pack_start(btnHard, True, True, 0)
+        self.btnEasy = Gtk.ToggleButton(label='Easy')
+        self.btnEasy.set_size_request(-1, 34)
+        self.Settings_DifficultyBox.pack_start(self.btnEasy, True, True, 0)
+        self.btnEasy.connect("toggled", self.on_Easy_toggled)
+        
+        self.btnNormal = Gtk.ToggleButton(label="Normal")
+        self.btnNormal.set_size_request(-1, 34)
+        self.btnNormal.set_active(True)
+        self.Settings_DifficultyBox.pack_start(self.btnNormal, True, True, 0)
+        self.btnNormal.connect("toggled", self.on_Normal_toggled)
+        
+        self.btnHard = Gtk.ToggleButton(label="Hard")
+        self.btnHard.set_size_request(-1, 34)
+        self.Settings_DifficultyBox.pack_start(self.btnHard, True, True, 0)
+        self.btnHard.connect("toggled", self.on_Hard_toggled)
 #Adding difficulty level selector and its label to Settings container
         self.lblDifficulty_Setting = Gtk.Label("Difficulty level:")
         self.Settings_Container.pack_start(self.lblDifficulty_Setting, True, True, 2)
@@ -170,6 +187,20 @@ class OperationsWindow(Gtk.Window):
         self.Settings_Popover.set_relative_to(btnSettings)
         self.Settings_Popover.show_all()
         self.Settings_Popover.popup()
+# Operating Easy mode button
+    def on_Easy_toggled(self,btnEasy):
+        self.btnNormal.set_active(False)
+        self.btnHard.set_active (False)
+        
+# Operating Normal mode button
+    def on_Normal_toggled(self,btnNormal):
+        self.btnEasy.set_active(False)
+        self.btnHard.set_active(False)
+        
+# Operating Hard mode button
+    def on_Hard_toggled(self,btnHard):
+        self.btnEasy.set_active(False)
+        self.btnNormal.set_active(False)
 
 window = OperationsWindow()
 window.connect("delete-event", Gtk.main_quit)
