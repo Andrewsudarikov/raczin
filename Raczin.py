@@ -4,7 +4,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
 from gi.repository import Gtk, Gio, GLib, Granite
 
-Hardcore_Mode = False
+Difficulty_Level = 2
 TaskNum = random.randint(1,990)
 Task_Number_Text = "Task No. "+ str(TaskNum)
 TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
@@ -139,11 +139,38 @@ class OperationsWindow(Gtk.Window):
         TaskNum = int(calcString) + 1
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-# Operating Settings button (PLACEHOLDER!!!)
+# Operating Settings button
     def settings_clicked(self,btnSettings):
-        print "Settings button clicked, yay!"
-        
-        
+# Setting up Settings menu popover window
+        self.Settings_Popover = Gtk.Popover()
+        self.Settings_Popover.set_position(Gtk.PositionType.BOTTOM)
+        self.Settings_Popover.set_size_request(20,40)
+        self.Settings_Popover.set_border_width(5)
+        self.Settings_Container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.Settings_Popover.add(self.Settings_Container)
+# Setting up difficulty level container
+        self.Settings_DifficultyBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        Gtk.StyleContext.add_class(self.Settings_DifficultyBox.get_style_context(), "linked")
+# Setting up difficulty level selector toggle buttons
+        btnEasy = Gtk.ToggleButton(label='Easy')
+        btnEasy.set_size_request(-1, 34)
+        self.Settings_DifficultyBox.pack_start(btnEasy, True, True, 0)
+        btnNormal = Gtk.ToggleButton(label="Normal")
+        btnNormal.set_size_request(-1, 34)
+        btnNormal.set_active(True)
+        self.Settings_DifficultyBox.pack_start(btnNormal, True, True, 0)
+        btnHard = Gtk.ToggleButton(label="Hard")
+        btnHard.set_size_request(-1, 34)
+        self.Settings_DifficultyBox.pack_start(btnHard, True, True, 0)
+#Adding difficulty level selector and its label to Settings container
+        self.lblDifficulty_Setting = Gtk.Label("Difficulty level:")
+        self.Settings_Container.pack_start(self.lblDifficulty_Setting, True, True, 2)
+        self.Settings_Container.pack_start(self.Settings_DifficultyBox, True, True, 0)
+# Displaying popover window
+        self.Settings_Popover.set_relative_to(btnSettings)
+        self.Settings_Popover.show_all()
+        self.Settings_Popover.popup()
+
 window = OperationsWindow()
 window.connect("delete-event", Gtk.main_quit)
 window.show_all()
