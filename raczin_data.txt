@@ -1,13 +1,18 @@
-number,task1,task2,task3,question1,answer,hint
-1,Here we create multiple lines of text to see if they,can neatly arrange into separate strings on the form,so that I needn't bother about the layout ever again!,And right here goes that tricky math problem for you.,OK,Here I will state the obvious
-2,Here we create multiple lines of text to see if they,can neatly arrange into separate strings on the form,so that I needn't bother about the layout ever again!,And right here goes that tricky math problem for you.,OK,Here I will state the obvious
-3,My friend spends 40 cents a day on water., , ,How many dollars does he spend on it a year?,146, There are 365 days in 1 year.
+Number in the system,task1,task2,task3,question1,answer,hint
+1,Here we create multiple lines of text to see if they,can neatly arrange into separate strings on the form,so that I needn't bother about the layout ever again!,And right here goes that tricky math problem for you.,120,Here I will state the obvious
+2,Here we create multiple lines of text to see if they,can neatly arrange into separate strings on the form,so that I needn't bother about the layout ever again!,And right here goes that tricky math problem for you.,123,Here I will state the obvious
+3,My friend spends 40 cents a day on fizzy drinks,and water. , ,How many dollars does he spend on them a year?,146, There are 365 days in 1 year.
 4,Robert came to town with $300 in his pockets.,He lived there for one week and accumulated a debt,of exactly $1.,How much did he spend a day?,43,More than 40 and less than 50.
-5,I had $15 in my pocket. I thought this could buy me,79 candies in a corner shop. But the shopkeeper said,that I needed 1 cent more.,How many cents does a candy cost?,19,More than 10 but less than 30.
+5,I had $15 in my pocket. I thought this could buy,me 79 candies in a corner shop. But the shopkeeper,said I needed ¢1 more.,How many ¢ does a candy cost?,19,More than ¢10 but less than ¢30.
 6,Last December Julia did 961 pushups in total., , ,How many pushups did she do each day?,31,There are 31 days in December
-7,Lucy drinks a glass of soda every day. On Sundays,she drinks one extra glass. Each glass of soda is ¢4., ,How much did Lucy spend on soda in April?,1.36,April has 4 Sundays.
+7,Lucy drinks a glass of soda every day. On Sundays,she drinks one extra glass. Each glass of soda is ¢4., ,How many cents did Lucy spend on soda in April?,136,April has 4 Sundays.
 8,Jerry earns $50 000 per year. From  the beginning,of January till the end of July he was spending,$4 500 a month.,How much can he spend per month till next year?,3700,Jerry has 5 months left.
 9,A driver works for 2 companies. At one of them,he makes $1200 a month. Another one pays him,$300 per week.,How much does he make in one month?,2400,There are 4 weeks in a month.
 10,A pawn shop buys a dozen books for $60 and sells,one book for $10., ,How much profit does it make from 30 books?,120,A dozen is 12.
-11,A book with 80 matches in it is worth $1., , ,How much do need to pay to get 2 000 matches?,25,80 as well as 2 000 can be divided by 4.
+11,A book with 80 matches in it is worth $1., , ,How much do you need to pay for 2 000 matches?,25,80 as well as 2 000 can be divided by 4.
 12,Hank has some T-shrts for sale. Selling them for $6,each he will make a profit of $24. If he sells them,for $3 he will make a loss of $12.,How many T-shirts does Hank have?,6,Calculate the real price of the T-shirt first.
+13,Jack wats to buy a new phone but he's $200 short ,of the sum needed.,,How much is the phone if Jack has $360?,560,Just add one to another. Come on!
+14,A lemonade stand spends $75 a month on lemons,and sells $20 worth of lemonade a week.,,How much profit does it make in a year?,60,12 months a year & 4 weeks a month.
+15,A box has 80 matches in it. The box costs ¢10.,,,How many ¢ are needed to buy 2000 matches?,250,Both 80 and 2000 can be divided by 4.
+16,A delivery van making rounds from warehouse,to the store does 65 miles a day.,,What distance does it travel in a month?,1950,In this case the month is 30 days.
+17,A magician has some marbles in his bag. If you add,half the number of his marbles to the bag and then,add 10 more you'll get 100.,How many marbles does he have in his bag?,60,A full number and a half can be divided by 3. 
