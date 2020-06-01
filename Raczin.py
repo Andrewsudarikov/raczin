@@ -21,6 +21,7 @@ Task_Number_Text = "Task No. "+ str(TaskNum)
 
 # Randomizing the matrix for easy mode number generator
 EasyMode_Rand = random.randint(1,4)
+CorrectAnswer = 0 
 
 # Placeholders in case you need them
 TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
@@ -30,6 +31,7 @@ lblHint_Placeholder_Text = "Here will be a hint for the task number "
 class OperationsWindow(Gtk.Window):
 
     def __init__(self):
+        global TaskNum, EasyMode_Rand, CorrectAnswer
         Gtk.Window.__init__(self, title="Raczin")
 
 #       Main form properties
@@ -292,67 +294,34 @@ class OperationsWindow(Gtk.Window):
         self.MainContainer.pack_start(self.HelperBox, False, True, 0)
 
 #       Setting up numbers on hint buttons
+        with open('raczin_data.txt', 'r') as f:
+            mycsv = csv.reader(f)
+            mycsv = list(mycsv)
+            AnswerData = int(mycsv[TaskNum][5])
         if EasyMode_Rand == 1:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) * 0.1 + 1
-                TestModifier2 = float(AnswerData) * 0.3 + 5
-                TestModifier3 = float(AnswerData) / 0.3 - 1
-                round(TestModifier1)
-                round(TestModifier2)
-                round(TestModifier3)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = int(AnswerData)
+            CorrectAnswer = 4
         if EasyMode_Rand == 2:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) * 0.3 + 10
-                TestModifier2 = float(AnswerData) / 0.3 - 2
-                TestModifier4 = float(AnswerData) * 0.1 + 2
-                round(TestModifier1)
-                round(TestModifier2)
-                round(TestModifier4)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = int(AnswerData)
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 3
         if EasyMode_Rand == 3:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier2 = float(AnswerData) * 0.1 + 3
-                TestModifier3 = float(AnswerData) * 0.3 + 9
-                TestModifier4 = float(AnswerData) / 0.3 - 3
-                round(TestModifier2)
-                round(TestModifier3)
-                round(TestModifier4)
-                AnswerData = mycsv[TaskNum][5]
-                TestVar1 = int(AnswerData)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = int(AnswerData)
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 1
         if EasyMode_Rand == 4:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) / 0.3 - 4
-                TestModifier3 = float(AnswerData) * 0.1 + 4
-                TestModifier4 = float(AnswerData) * 0.3 + 8
-                round(TestModifier1)
-                round(TestModifier3)
-                round(TestModifier4)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = int(AnswerData)
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 2
 
 #       Applying labels to hint buttons
         self.btn1.set_label(str(TestVar1))
@@ -372,7 +341,10 @@ class OperationsWindow(Gtk.Window):
 # === OPERATIONS FOR HEADERBAR BUTTONS AND FIELDS ===
 #   Operating btnRand function
     def task_randomizer_clicked(self,btnRand):
+        global CorrectAnswer
         TaskNum = random.randint(1,14)
+        self.AnswerEntry.set_text("")
+        self.btnAnswer.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
         with open('raczin_data.txt', 'r') as f:
@@ -402,66 +374,34 @@ class OperationsWindow(Gtk.Window):
 
 #       Ranodmizing numbers on hint buttons
         EasyMode_Rand = random.randint(1,4)
+        with open('raczin_data.txt', 'r') as f:
+            mycsv = csv.reader(f)
+            mycsv = list(mycsv)
+            AnswerData = int(mycsv[TaskNum][5])
         if EasyMode_Rand == 1:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) * 0.1 + 1
-                TestModifier2 = float(AnswerData) * 0.3 + 5
-                TestModifier3 = float(AnswerData) / 0.3 - 1
-                round(TestModifier1)
-                round(TestModifier2)
-                round(TestModifier3)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = int(AnswerData)
+            CorrectAnswer = 4
         if EasyMode_Rand == 2:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) * 0.3 + 10
-                TestModifier2 = float(AnswerData) / 0.3 - 2
-                TestModifier4 = float(AnswerData) * 0.1 + 2
-                round(TestModifier1)
-                round(TestModifier2)
-                round(TestModifier4)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = int(AnswerData)
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 3
         if EasyMode_Rand == 3:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                TestModifier2 = float(AnswerData) * 0.1 + 3
-                TestModifier3 = float(AnswerData) * 0.3 + 9
-                TestModifier4 = float(AnswerData) / 0.3 - 3
-                round(TestModifier2)
-                round(TestModifier3)
-                round(TestModifier4)
-                AnswerData = mycsv[TaskNum][5]
-                TestVar1 = int(AnswerData)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = int(AnswerData)
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 1
         if EasyMode_Rand == 4:
-            with open('raczin_data.txt', 'r') as f:
-                mycsv = csv.reader(f)
-                mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) / 0.3 - 4
-                TestModifier3 = float(AnswerData) * 0.1 + 4
-                TestModifier4 = float(AnswerData) * 0.3 + 8
-                round(TestModifier1)
-                round(TestModifier3)
-                round(TestModifier4)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData)
-                TestVar3 = int(AnswerData) + int(TestModifier3)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = int(AnswerData)
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 2
 
 #       Applying labels to hint buttons
         self.btn1.set_label(str(TestVar1))
@@ -473,6 +413,7 @@ class OperationsWindow(Gtk.Window):
     def task_previous_clicked(self,btnPrev):
 
 #       Reading main operational variables
+        global CorrectAnswer
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         with open('raczin_data.txt', 'r') as f:
@@ -520,66 +461,34 @@ class OperationsWindow(Gtk.Window):
 
 #           Ranodmizing numbers on hint buttons
             EasyMode_Rand = random.randint(1,4)
+            with open('raczin_data.txt', 'r') as f:
+                mycsv = csv.reader(f)
+                mycsv = list(mycsv)
+                AnswerData = int(mycsv[TaskNum][5])
             if EasyMode_Rand == 1:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestModifier1 = float(AnswerData) * 0.1 + 1
-                    TestModifier2 = float(AnswerData) * 0.3 + 5
-                    TestModifier3 = float(AnswerData) / 0.3 - 1
-                    round(TestModifier1)
-                    round(TestModifier2)
-                    round(TestModifier3)
-                    TestVar1 = int(AnswerData) + int(TestModifier1)
-                    TestVar2 = int(AnswerData) + int(TestModifier2)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = int(AnswerData)
+                CorrectAnswer = 4
             if EasyMode_Rand == 2:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                AnswerData = mycsv[TaskNum][5]
-                TestModifier1 = float(AnswerData) * 0.3 + 10
-                TestModifier2 = float(AnswerData) / 0.3 - 2
-                TestModifier4 = float(AnswerData) * 0.1 + 2
-                round(TestModifier1)
-                round(TestModifier2)
-                round(TestModifier4)
-                TestVar1 = int(AnswerData) + int(TestModifier1)
-                TestVar2 = int(AnswerData) + int(TestModifier2)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar3 = int(AnswerData)
-                TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 3
             if EasyMode_Rand == 3:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    TestModifier2 = float(AnswerData) * 0.1 + 3
-                    TestModifier3 = float(AnswerData) * 0.3 + 9
-                    TestModifier4 = float(AnswerData) / 0.3 - 3
-                    round(TestModifier2)
-                    round(TestModifier3)
-                    round(TestModifier4)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestVar1 = int(AnswerData)
-                    TestVar2 = int(AnswerData) + int(TestModifier2)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar1 = int(AnswerData)
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 1
             if EasyMode_Rand == 4:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestModifier1 = float(AnswerData) / 0.3 - 4
-                    TestModifier3 = float(AnswerData) * 0.1 + 4
-                    TestModifier4 = float(AnswerData) * 0.3 + 8
-                    round(TestModifier1)
-                    round(TestModifier3)
-                    round(TestModifier4)
-                    TestVar1 = int(AnswerData) + int(TestModifier1)
-                    TestVar2 = int(AnswerData)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = int(AnswerData)
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 2
 
 #           Applying labels to hint buttons
             self.btn1.set_label(str(TestVar1))
@@ -591,6 +500,7 @@ class OperationsWindow(Gtk.Window):
     def task_next_clicked(self,btnNext):
 
 #       Reading main operational variables
+        global CorrectAnswer
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         with open('raczin_data.txt', 'r') as f:
@@ -638,66 +548,31 @@ class OperationsWindow(Gtk.Window):
 
 #           Ranodmizing numbers on hint buttons
             EasyMode_Rand = random.randint(1,4)
+            AnswerData = int(mycsv[TaskNum][5])
             if EasyMode_Rand == 1:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestModifier1 = float(AnswerData) * 0.1 + 1
-                    TestModifier2 = float(AnswerData) * 0.3 + 5
-                    TestModifier3 = float(AnswerData) / 0.3 - 1
-                    round(TestModifier1)
-                    round(TestModifier2)
-                    round(TestModifier3)
-                    TestVar1 = int(AnswerData) + int(TestModifier1)
-                    TestVar2 = int(AnswerData) + int(TestModifier2)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = int(AnswerData)
+                CorrectAnswer = 4
             if EasyMode_Rand == 2:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestModifier1 = float(AnswerData) * 0.3 + 10
-                    TestModifier2 = float(AnswerData) / 0.3 - 2
-                    TestModifier4 = float(AnswerData) * 0.1 + 2
-                    round(TestModifier1)
-                    round(TestModifier2)
-                    round(TestModifier4)
-                    TestVar1 = int(AnswerData) + int(TestModifier1)
-                    TestVar2 = int(AnswerData) + int(TestModifier2)
-                    TestVar3 = int(AnswerData)
-                    TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar3 = int(AnswerData)
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 3
             if EasyMode_Rand == 3:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    TestModifier2 = float(AnswerData) * 0.1 + 3
-                    TestModifier3 = float(AnswerData) * 0.3 + 9
-                    TestModifier4 = float(AnswerData) / 0.3 - 3
-                    round(TestModifier2)
-                    round(TestModifier3)
-                    round(TestModifier4)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestVar1 = int(AnswerData)
-                    TestVar2 = int(AnswerData) + int(TestModifier2)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar1 = int(AnswerData)
+                TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 1
             if EasyMode_Rand == 4:
-                with open('raczin_data.txt', 'r') as f:
-                    mycsv = csv.reader(f)
-                    mycsv = list(mycsv)
-                    AnswerData = mycsv[TaskNum][5]
-                    TestModifier1 = float(AnswerData) / 0.3 - 4
-                    TestModifier3 = float(AnswerData) * 0.1 + 4
-                    TestModifier4 = float(AnswerData) * 0.3 + 8
-                    round(TestModifier1)
-                    round(TestModifier3)
-                    round(TestModifier4)
-                    TestVar1 = int(AnswerData) + int(TestModifier1)
-                    TestVar2 = int(AnswerData)
-                    TestVar3 = int(AnswerData) + int(TestModifier3)
-                    TestVar4 = int(AnswerData) + int(TestModifier4)
+                TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar2 = int(AnswerData)
+                TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+                CorrectAnswer = 2
 
 #           Applying labels to hint buttons
             self.btn1.set_label(str(TestVar1))
@@ -707,6 +582,8 @@ class OperationsWindow(Gtk.Window):
 
 #   Processing ENTER keypress when fldTask is in focus
     def fldTask_ManualInput(self,fldTask):
+        global CorrectAnswer, EasyMode_Rand
+        EasyMode_Rand = random.randint(1,4)
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
@@ -724,6 +601,39 @@ class OperationsWindow(Gtk.Window):
         self.TaskData2.set_text(TaskData2_Text)
         self.TaskQuestion.set_text(TaskQuestion_Text)
         self.lblHint.set_text(lblHint_Text)
+
+#       Randomizing easy mode buttons
+        AnswerData = int(mycsv[TaskNum][5])
+        if EasyMode_Rand == 1:
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = int(AnswerData)
+            CorrectAnswer = 4
+        if EasyMode_Rand == 2:
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = int(AnswerData)
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 3
+        if EasyMode_Rand == 3:
+            TestVar1 = int(AnswerData)
+            TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 1
+        if EasyMode_Rand == 4:
+            TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar2 = int(AnswerData)
+            TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
+            CorrectAnswer = 2
+
+#           Applying labels to hint buttons
+            self.btn1.set_label(str(TestVar1))
+            self.btn2.set_label(str(TestVar2))
+            self.btn3.set_label(str(TestVar3))
+            self.btn4.set_label(str(TestVar4))
 
 #   Operating Settings button
     def settings_clicked(self,btnSettings):
@@ -840,7 +750,8 @@ class OperationsWindow(Gtk.Window):
 
 #   Operating Easy Mode BUTTON 1
     def btn1_clicked(self,btn1):
-        if EasyMode_Rand == 4:
+        global CorrectAnswer
+        if CorrectAnswer == 1:
             self.btn1.modify_bg(Gtk.StateType(0), Gdk.color_parse('#d1ff82'))
             self.btn2.set_sensitive(False)
             self.btn3.set_sensitive(False)
@@ -850,31 +761,37 @@ class OperationsWindow(Gtk.Window):
 
 #   Operating Easy Mode BUTTON 2
     def btn2_clicked(self,btn2):
-        if EasyMode_Rand == 3:
+        global CorrectAnswer
+        if CorrectAnswer == 2:
             self.btn2.modify_bg(Gtk.StateType(0), Gdk.color_parse('#d1ff82'))
             self.btn1.set_sensitive(False)
             self.btn3.set_sensitive(False)
             self.btn4.set_sensitive(False)
+            CorrectAnswer = 0
         else:
             self.btn2.modify_bg(Gtk.StateType(0), Gdk.color_parse('#ff8c82'))
 
 #   Operating Easy Mode BUTTON 3
     def btn3_clicked(self,btn3):
-        if EasyMode_Rand == 1:
+        global CorrectAnswer
+        if CorrectAnswer == 3:
             self.btn3.modify_bg(Gtk.StateType(0), Gdk.color_parse('#d1ff82'))
             self.btn2.set_sensitive(False)
             self.btn1.set_sensitive(False)
             self.btn4.set_sensitive(False)
+            CorrectAnswer = 0
         else:
             self.btn3.modify_bg(Gtk.StateType(0), Gdk.color_parse('#ff8c82'))
 
 #   Operating Easy Mode BUTTON 4
     def btn4_clicked(self,btn4):
-        if EasyMode_Rand == 2:
+        global CorrectAnswer
+        if CorrectAnswer == 4:
             self.btn4.modify_bg(Gtk.StateType(0), Gdk.color_parse('#d1ff82'))
             self.btn2.set_sensitive(False)
             self.btn3.set_sensitive(False)
             self.btn1.set_sensitive(False)
+            CorrectAnswer = 0
         else:
             self.btn4.modify_bg(Gtk.StateType(0), Gdk.color_parse('#ff8c82'))
 
