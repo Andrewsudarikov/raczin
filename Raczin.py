@@ -1,10 +1,9 @@
 import csv
 import gi
 import random
-import math
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
-from gi.repository import Gtk, Gdk, Gio, GLib, Granite, Pango
+from gi.repository import Gtk, Gdk, Gio, Granite, Pango
 
 # Setting up the difficulty level
 global Difficulty_Level
@@ -13,13 +12,13 @@ Difficulty_Level = 2
 # Reading the number of lines in the CSV table
 with open('raczin_data.txt', 'r') as f:
     mycsv = csv.reader(f)
-    LimitMargin = len(list(mycsv)) + 1
+    LimitMargin = len(list(mycsv)) + 1 #that's a correction value for the header
 
 # Randomizing the task number shown on startup
-TaskNum = random.randint(1,int(LimitMargin))
+TaskNum = random.randint(3,int(LimitMargin))
 Task_Number_Text = "Task No. "+ str(TaskNum)
 
-# Randomizing the matrix for easy mode number generator
+# Randomizing the matrix for number generator used in easy mode
 EasyMode_Rand = random.randint(1,4)
 CorrectAnswer = 0 
 
@@ -50,7 +49,6 @@ class OperationsWindow(Gtk.Window):
 
 #       Setting up Navigation bar container
         self.NavBar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        Gtk.StyleContext.add_class(self.NavBar.get_style_context(), "linked")
         self.NavBar.show()
 
 #       Setting up NavBar controls
@@ -160,6 +158,7 @@ class OperationsWindow(Gtk.Window):
         self.MainContainer.show()
 
 # === Setting up Task dispays ===
+
 #       Task number label:
         self.lblTaskNumber = Gtk.Label()
         self.lblTaskNumber.set_use_markup(True)
@@ -229,6 +228,7 @@ class OperationsWindow(Gtk.Window):
 #       Setting up hint button
         self.btnHint = Gtk.Button()
         self.btnHint.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btnHint.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         icon = Gio.ThemedIcon(name="help-contents-symbolic")
         image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
         image.show()
@@ -240,6 +240,7 @@ class OperationsWindow(Gtk.Window):
 #       Setting up answer button
         self.btnAnswer = Gtk.Button()
         self.btnAnswer.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btnAnswer.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         icon = Gio.ThemedIcon(name="object-select-symbolic")
         image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
         image.show()
@@ -269,24 +270,28 @@ class OperationsWindow(Gtk.Window):
         Gtk.StyleContext.add_class(self.HelperBox.get_style_context(), "linked")
         self.btn1 = Gtk.Button()
         self.btn1.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btn1.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         self.btn1.set_size_request(-1, 34)
         self.btn1.connect("clicked", self.btn1_clicked)
         self.btn1.show()
         self.HelperBox.pack_end(self.btn1, True, True, 0)
         self.btn2 = Gtk.Button()
         self.btn2.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btn2.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         self.btn2.set_size_request(-1, 34)
         self.btn2.connect("clicked", self.btn2_clicked)
         self.btn2.show()
         self.HelperBox.pack_end(self.btn2, True, True, 0)
         self.btn3 = Gtk.Button()
         self.btn3.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btn3.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         self.btn3.set_size_request(-1, 34)
         self.btn3.connect("clicked", self.btn3_clicked)
         self.btn3.show()
         self.HelperBox.pack_end(self.btn3, True, True, 0)
         self.btn4 = Gtk.Button()
         self.btn4.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
+        self.btn4.modify_fg(Gtk.StateType(0), Gdk.color_parse('#7a0000'))
         self.btn4.set_size_request(-1, 34)
         self.btn4.connect("clicked", self.btn4_clicked)
         self.btn4.show()
@@ -334,11 +339,11 @@ class OperationsWindow(Gtk.Window):
         self.Hint_Popover.set_position(Gtk.PositionType.TOP)
         self.Hint_Popover.set_size_request(20,40)
         self.Hint_Popover.set_border_width(5)
-        self.Hint_Popover.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fdf6e3'))
         self.lblHint = Gtk.Label()
         self.Hint_Popover.add(self.lblHint)
 
 # === OPERATIONS FOR HEADERBAR BUTTONS AND FIELDS ===
+
 #   Operating btnRand function
     def task_randomizer_clicked(self,btnRand):
         global CorrectAnswer
@@ -674,7 +679,7 @@ class OperationsWindow(Gtk.Window):
             self.btnHint.show()
             self.btnHarder.set_sensitive(True)
 
-# === O P E R A T I N G   G A M E   B U T T O N S ===
+# === OPERATING GAME BUTTONS ===
 
 #   Operating Hint button
     def btnHint_clicked(self, btnHint):
