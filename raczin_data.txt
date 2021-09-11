@@ -11,7 +11,7 @@ Number in the system,task1,task2,task3,question1,answer,hint
 10,A pawn shop buys a dozen books for $60 and sells,one book for $10., ,How much profit does it make from 30 books?,120,A dozen is 12.
 11,A book with 80 matches in it is worth $1., , ,How much do you need to pay for 2 000 matches?,25,80 as well as 2 000 can be divided by 4.
 12,Hank has some T-shrts for sale. Selling them for $6,each he will make a profit of $24. If he sells them,for $3 he will make a loss of $12.,How many T-shirts does Hank have?,6,Calculate the real price of the T-shirt first.
-13,Jack wats to buy a new phone but he's $200 short ,of the sum needed.,,How much is the phone if Jack has $360?,560,Just add one to another. Come on!
+13,Jack wats to buy a new phone but he's $200 short ,of the sum of cash he needs.,,How much is the phone if Jack has $360?,560,Just add one to another. Come on!
 14,A lemonade stand spends $75 a month on lemons,and sells $20 worth of lemonade a week.,,How much profit does it make in a year?,60,12 months a year & 4 weeks a month.
 15,A box has 80 matches in it. The box costs ¢10.,,,How many ¢ are needed to buy 2000 matches?,250,Both 80 and 2000 can be divided by 4.
 16,A delivery van making rounds from warehouse,to the store does 65 miles a day.,,What distance does it travel in a month?,1950,In this case the month is 30 days.
