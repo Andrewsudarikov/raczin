@@ -49,7 +49,6 @@ class OperationsWindow(Gtk.Window):
 
 #       Setting up Navigation bar container
         self.NavBar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        #Gtk.StyleContext.add_class(self.NavBar.get_style_context(), "linked")
         self.NavBar.show()
 
 #       Setting up NavBar controls
@@ -159,6 +158,7 @@ class OperationsWindow(Gtk.Window):
         self.MainContainer.show()
 
 # === Setting up Task dispays ===
+
 #       Task number label:
         self.lblTaskNumber = Gtk.Label()
         self.lblTaskNumber.set_use_markup(True)
@@ -343,6 +343,7 @@ class OperationsWindow(Gtk.Window):
         self.Hint_Popover.add(self.lblHint)
 
 # === OPERATIONS FOR HEADERBAR BUTTONS AND FIELDS ===
+
 #   Operating btnRand function
     def task_randomizer_clicked(self,btnRand):
         global CorrectAnswer
@@ -678,7 +679,7 @@ class OperationsWindow(Gtk.Window):
             self.btnHint.show()
             self.btnHarder.set_sensitive(True)
 
-# === O P E R A T I N G   G A M E   B U T T O N S ===
+# === OPERATING GAME BUTTONS ===
 
 #   Operating Hint button
     def btnHint_clicked(self, btnHint):
