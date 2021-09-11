@@ -1,10 +1,9 @@
 import csv
 import gi
 import random
-import math
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
-from gi.repository import Gtk, Gdk, Gio, GLib, Granite, Pango
+from gi.repository import Gtk, Gdk, Gio, Granite, Pango
 
 # Setting up the difficulty level
 global Difficulty_Level
