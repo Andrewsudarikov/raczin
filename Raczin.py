@@ -5,10 +5,6 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
 from gi.repository import Gtk, Gdk, Gio, Granite, Pango
 
-# Setting up the difficulty level
-global Difficulty_Level
-Difficulty_Level = 2
-
 # Reading the number of lines in the CSV table
 with open('raczin_data.txt', 'r') as f:
     mycsv = csv.reader(f)
@@ -21,6 +17,13 @@ Task_Number_Text = "Task No. "+ str(TaskNum)
 # Randomizing the matrix for number generator used in easy mode
 EasyMode_Rand = random.randint(1,4)
 CorrectAnswer = 0 
+
+# Setting up the difficulty level
+global Difficulty_Level
+with open('raczin_data.txt', 'r') as f:
+    mycsv = csv.reader(f)
+    mycsv = list(mycsv)
+    Difficulty_Level = int(mycsv[0][6])
 
 # Placeholders in case you need them
 TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
@@ -657,6 +660,9 @@ class OperationsWindow(Gtk.Window):
         if Difficulty_Level == 2:
             Difficulty_Level = 3
             self.lblDifficulty_Setting.set_label("HARD")
+            with open('raczin_data.txt', 'r') as f:
+                setcsv = csv.writer
+                
             self.btnHint.hide()
             self.btnHarder.set_sensitive(False)
         if Difficulty_Level == 1:
