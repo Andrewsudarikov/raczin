@@ -109,11 +109,6 @@ class OperationsWindow(Gtk.Window):
         btnSettings.show()
         self.HeaderBar.pack_end(btnSettings)
 
-#       Placing a dark mode switch
-        modeSwitch = Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic")
-        modeSwitch.set_valign(Gtk.Align.CENTER)
-        self.HeaderBar.pack_end(modeSwitch)
-
 #       Setting up Settings menu popover window
         self.Settings_Popover = Gtk.Popover()
         self.Settings_Popover.set_position(Gtk.PositionType.BOTTOM)
