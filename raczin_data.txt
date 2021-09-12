@@ -6,7 +6,7 @@ Number in the system,task1,task2,task3,question1,answer,2
 5,I had $15 in my pocket. I thought this could buy,me 79 candies in a corner shop. But the shopkeeper,said I needed ¢1 more.,How many ¢ does a candy cost?,19,More than ¢10 but less than ¢30.
 6,Last December Julia did 961 pushups in total., , ,How many pushups did she do each day?,31,There are 31 days in December
 7,Lucy drinks a glass of soda every day. On Sundays,she drinks one extra glass. Each glass of soda is ¢4., ,How many cents did Lucy spend on soda in April?,136,April has 4 Sundays.
-8,Jerry earns $50 000 per year. From  the beginning,of January till the end of July he was spending,$4 500 a month.,How much can he spend per month till next year?,3700,Jerry has 5 months left.
+8,Jerry earns $50 000 per year. From the beginning,of January till the end of July he was spending,$4 500 a month.,How much can he spend per month till next year?,3700,Jerry has 5 months left.
 9,A driver works for 2 companies. At one of them,he makes $1200 a month. Another one pays him,$300 per week.,How much does he make in one month?,2400,There are 4 weeks in a month.
 10,A pawn shop buys a dozen books for $60 and sells,one book for $10., ,How much profit does it make from 30 books?,120,A dozen is 12.
 11,A book with 80 matches in it is worth $1., , ,How much do you need to pay for 2 000 matches?,25,80 as well as 2 000 can be divided by 4.
