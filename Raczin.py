@@ -314,6 +314,13 @@ class OperationsWindow(Gtk.Window):
                 TestVar2 = int(TestVar2+AnswerData)
             if TestVar3 == TestVar1:
                 TestVar3 = int(TestVar3-AnswerData)
+            # Checjking to make sure no wrong answer match the correct one
+            if TestVar1 == TestVar4:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar4:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3-AnswerData)
 
         if EasyMode_Rand == 2:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
@@ -326,6 +333,12 @@ class OperationsWindow(Gtk.Window):
             if TestVar2 == TestVar4:
                 TestVar2 = int(TestVar2+AnswerData)
             if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar3:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar4 == TestVar3:
                 TestVar4 = int(TestVar4-AnswerData)
 
         if EasyMode_Rand == 3:
@@ -340,6 +353,12 @@ class OperationsWindow(Gtk.Window):
                 TestVar3 = int(TestVar3+AnswerData)
             if TestVar4 == TestVar2:
                 TestVar4 = int(TestVar4-AnswerData)
+            if TestVar2 == TestVar1:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar1:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
 
         if EasyMode_Rand == 4:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
@@ -352,6 +371,12 @@ class OperationsWindow(Gtk.Window):
             if TestVar3 == TestVar4:
                 TestVar3 = int(TestVar3+AnswerData)
             if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar3 == TestVar2:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar2:
                 TestVar4 = int(TestVar4-AnswerData)
 
 #       Applying labels to hint buttons
@@ -415,24 +440,77 @@ class OperationsWindow(Gtk.Window):
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = int(AnswerData)
             CorrectAnswer = 4
+            # Checking to make sure no 2 wrong answers are the same
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2+AnswerData)
+            if TestVar3 == TestVar1:
+                TestVar3 = int(TestVar3-AnswerData)
+            # Checjking to make sure no wrong answer match the correct one
+            if TestVar1 == TestVar4:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar4:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3-AnswerData)
+
         if EasyMode_Rand == 2:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar3 = int(AnswerData)
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 3
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar4:
+                TestVar2 = int(TestVar2+AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar3:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar4 == TestVar3:
+                TestVar4 = int(TestVar4-AnswerData)
+
         if EasyMode_Rand == 3:
             TestVar1 = int(AnswerData)
             TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 1
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3+AnswerData)
+            if TestVar4 == TestVar2:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar2 == TestVar1:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar1:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+
         if EasyMode_Rand == 4:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar2 = int(AnswerData)
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 2
+            if TestVar1 == TestVar3:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3+AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar3 == TestVar2:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar2:
+                TestVar4 = int(TestVar4-AnswerData)
 
 #       Applying labels to hint buttons
         self.btn1.set_label(str(TestVar1))
@@ -502,24 +580,77 @@ class OperationsWindow(Gtk.Window):
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = int(AnswerData)
                 CorrectAnswer = 4
+                # Checking to make sure no 2 wrong answers are the same
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2+AnswerData)
+                if TestVar3 == TestVar1:
+                    TestVar3 = int(TestVar3-AnswerData)
+                # Checjking to make sure no wrong answer match the correct one
+                if TestVar1 == TestVar4:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar4:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3-AnswerData)
+
             if EasyMode_Rand == 2:
                 TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar3 = int(AnswerData)
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 3
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar4:
+                    TestVar2 = int(TestVar2+AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar1 == TestVar3:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar4 == TestVar3:
+                    TestVar4 = int(TestVar4-AnswerData)
+
             if EasyMode_Rand == 3:
                 TestVar1 = int(AnswerData)
                 TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 1
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3+AnswerData)
+                if TestVar4 == TestVar2:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar2 == TestVar1:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar1:
+                    TestVar3 = int(TestVar3-AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+
             if EasyMode_Rand == 4:
                 TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar2 = int(AnswerData)
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 2
+                if TestVar1 == TestVar3:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3+AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar3 == TestVar2:
+                    TestVar3 = int(TestVar3-AnswerData)
+                if TestVar4 == TestVar2:
+                    TestVar4 = int(TestVar4-AnswerData)
 
 #           Applying labels to hint buttons
             self.btn1.set_label(str(TestVar1))
@@ -586,24 +717,77 @@ class OperationsWindow(Gtk.Window):
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = int(AnswerData)
                 CorrectAnswer = 4
+            # Checking to make sure no 2 wrong answers are the same
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2+AnswerData)
+                if TestVar3 == TestVar1:
+                    TestVar3 = int(TestVar3-AnswerData)
+            # Checjking to make sure no wrong answer match the correct one
+                if TestVar1 == TestVar4:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar4:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3-AnswerData)
+
             if EasyMode_Rand == 2:
                 TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar3 = int(AnswerData)
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 3
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar4:
+                    TestVar2 = int(TestVar2+AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar1 == TestVar3:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar4 == TestVar3:
+                    TestVar4 = int(TestVar4-AnswerData)
+
             if EasyMode_Rand == 3:
                 TestVar1 = int(AnswerData)
                 TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 1
+                if TestVar2 == TestVar3:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3+AnswerData)
+                if TestVar4 == TestVar2:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar2 == TestVar1:
+                    TestVar2 = int(TestVar2-AnswerData)
+                if TestVar3 == TestVar1:
+                    TestVar3 = int(TestVar3-AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+
             if EasyMode_Rand == 4:
                 TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar2 = int(AnswerData)
                 TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
                 CorrectAnswer = 2
+                if TestVar1 == TestVar3:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar3 == TestVar4:
+                    TestVar3 = int(TestVar3+AnswerData)
+                if TestVar4 == TestVar1:
+                    TestVar4 = int(TestVar4-AnswerData)
+                if TestVar1 == TestVar2:
+                    TestVar1 = int(TestVar1-AnswerData)
+                if TestVar3 == TestVar2:
+                    TestVar3 = int(TestVar3-AnswerData)
+                if TestVar4 == TestVar2:
+                    TestVar4 = int(TestVar4-AnswerData)
 
 #           Applying labels to hint buttons
             self.btn1.set_label(str(TestVar1))
@@ -641,24 +825,77 @@ class OperationsWindow(Gtk.Window):
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = int(AnswerData)
             CorrectAnswer = 4
+            # Checking to make sure no 2 wrong answers are the same
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2+AnswerData)
+            if TestVar3 == TestVar1:
+                TestVar3 = int(TestVar3-AnswerData)
+            # Checjking to make sure no wrong answer match the correct one
+            if TestVar1 == TestVar4:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar4:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3-AnswerData)
+
         if EasyMode_Rand == 2:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar3 = int(AnswerData)
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 3
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar4:
+                TestVar2 = int(TestVar2+AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar3:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar4 == TestVar3:
+                TestVar4 = int(TestVar4-AnswerData)
+
         if EasyMode_Rand == 3:
             TestVar1 = int(AnswerData)
             TestVar2 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 1
+            if TestVar2 == TestVar3:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3+AnswerData)
+            if TestVar4 == TestVar2:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar2 == TestVar1:
+                TestVar2 = int(TestVar2-AnswerData)
+            if TestVar3 == TestVar1:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+
         if EasyMode_Rand == 4:
             TestVar1 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar2 = int(AnswerData)
             TestVar3 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             TestVar4 = random.randint(int(0.75*AnswerData),int(1.25*AnswerData))
             CorrectAnswer = 2
+            if TestVar1 == TestVar3:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar3 == TestVar4:
+                TestVar3 = int(TestVar3+AnswerData)
+            if TestVar4 == TestVar1:
+                TestVar4 = int(TestVar4-AnswerData)
+            if TestVar1 == TestVar2:
+                TestVar1 = int(TestVar1-AnswerData)
+            if TestVar3 == TestVar2:
+                TestVar3 = int(TestVar3-AnswerData)
+            if TestVar4 == TestVar2:
+                TestVar4 = int(TestVar4-AnswerData)
 
 #           Applying labels to hint buttons
             self.btn1.set_label(str(TestVar1))
