@@ -8,4 +8,6 @@ Raczin is a mental arhythmetics app build with GTK+ and Elementary OS aestheitc 
 
 Most of its exercises are based on an old Russian mental arithmetic textbook written by Alexander Raczinsky, thus the name of the app.  
 
-It now has Elementary color palette implemented. 
+News and updates: 
+-----------------
+:: Spetmber 13, 2021: Raczin now works in all Ubuntu-based Linux distributions!
