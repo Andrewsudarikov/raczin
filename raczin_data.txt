@@ -15,4 +15,5 @@ Number in the system,task1,task2,task3,question1,answer,2
 14,A lemonade stand spends $75 a month on lemons,and sells $20 worth of lemonade a week.,,How much profit does it make in a year?,60,12 months a year & 4 weeks a month.
 15,A box has 80 matches in it. The box costs ¢10.,,,How many ¢ are needed to buy 2000 matches?,250,Both 80 and 2000 can be divided by 4.
 16,A delivery van making rounds from warehouse,to the store does 65 miles a day.,,What distance does it travel in a month?,1950,In this case the month is 30 days.
-17,A magician has some marbles in his bag. If you add,half the number of his marbles to the bag and then,add 10 more you'll get 100.,How many marbles does he have in his bag?,60,A full number and a half can be divided by 3. 
+17,A magician has some marbles in his bag. If you add,half the number of his marbles to the bag and then,add 10 more you'll get 100.,How many marbles does he have in his bag?,60,A full number and a half can be divided by 3.
+18,Each sudent in class needs 4 textbooks and there are,15 students in the class., ,How many textbooks do you need for the whole class?,60,Seroiusly? Multiply one by another.
