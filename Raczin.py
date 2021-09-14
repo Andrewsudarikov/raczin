@@ -37,7 +37,7 @@ class OperationsWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="Raczin")
 
 #       Main form properties
-        self.set_default_size(300,350)
+        self.set_default_size(470,350)
         self.set_border_width(12)
         self.set_modal(True)
         self.set_resizable(False)
