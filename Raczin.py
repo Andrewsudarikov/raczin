@@ -8,7 +8,7 @@ from gi.repository import Gtk, Gdk, Gio, Pango
 # Reading the number of lines in the CSV table
 with open('raczin_data.txt', 'r') as f:
     mycsv = csv.reader(f)
-    LimitMargin = len(list(mycsv)) + 1 #that's a correction value for the header
+    LimitMargin = len(list(mycsv)) - 1 #that's a correction value for the header
 
 # Randomizing the task number shown on startup
 TaskNum = random.randint(3,int(LimitMargin))
@@ -392,6 +392,17 @@ class OperationsWindow(Gtk.Window):
         self.Hint_Popover.set_border_width(5)
         self.lblHint = Gtk.Label()
         self.Hint_Popover.add(self.lblHint)
+        
+#       Switching Prev and Next buttons on and off if needed
+        if TaskNum == 1: 
+            self.btnPrev.set_sensitive(False)
+            self.btnNext.set_sensitive(True)
+        if TaskNum == LimitMargin:
+            self.btnNext.set_sensitive(False)
+            self.btnPrev.set_sensitive(True)
+        if 2 <= TaskNum < LimitMargin:
+            self.btnPrev.set_sensitive(True)
+            self.btnNext.set_sensitive(True)
 
 # === OPERATIONS FOR HEADERBAR BUTTONS AND FIELDS ===
 
@@ -816,6 +827,16 @@ class OperationsWindow(Gtk.Window):
         self.TaskData2.set_text(TaskData2_Text)
         self.TaskQuestion.set_text(TaskQuestion_Text)
         self.lblHint.set_text(lblHint_Text)
+#       Switching Prev and Next buttons on and off if needed
+        if TaskNum == 1: 
+            self.btnPrev.set_sensitive(False)
+            self.btnNext.set_sensitive(True)
+        if TaskNum == LimitMargin:
+            self.btnNext.set_sensitive(False)
+            self.btnPrev.set_sensitive(True)
+        if 2 <= TaskNum < LimitMargin:
+            self.btnPrev.set_sensitive(True)
+            self.btnNext.set_sensitive(True)
 
 #       Randomizing easy mode buttons
         AnswerData = int(mycsv[TaskNum][5])
