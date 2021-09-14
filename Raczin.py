@@ -25,6 +25,12 @@ with open('raczin_data.txt', 'r') as f:
     mycsv = list(mycsv)
     Difficulty_Level = int(mycsv[0][6])
 
+global Color_Mode
+with open('raczin_data.txt', 'r') as f:
+    mycsv = csv.reader(f)
+    mycsv = list(mycsv)
+    Color_Mode = int(mycsv[0][5])
+
 # Placeholders in case you need them
 TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
 TaskQuestion_Placeholder_Text = "Here will be the question for the task number "+ str(TaskNum) +"."
@@ -392,7 +398,7 @@ class OperationsWindow(Gtk.Window):
         self.Hint_Popover.set_border_width(5)
         self.lblHint = Gtk.Label()
         self.Hint_Popover.add(self.lblHint)
-        
+
 #       Switching Prev and Next buttons on and off if needed
         if TaskNum == 1: 
             self.btnPrev.set_sensitive(False)
