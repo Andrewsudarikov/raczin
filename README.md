@@ -10,4 +10,5 @@ Most of its exercises are based on an old Russian mental arithmetic textbook wri
 
 News and updates: 
 -----------------
-:: Spetmber 13, 2021: Raczin now works in all Ubuntu-based Linux distributions!
+:: September 13, 2021: Raczin now works in all Ubuntu-based Linux distributions!
+:: September 14, 2021: Added 5 more tasks, removed placeholders from tasks 1 and 2.
