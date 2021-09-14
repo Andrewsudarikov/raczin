@@ -3,7 +3,7 @@ import gi
 import random
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
-from gi.repository import Gtk, Gdk, Gio, Granite, Pango
+from gi.repository import Gtk, Gdk, Gio, Pango
 
 # Reading the number of lines in the CSV table
 with open('raczin_data.txt', 'r') as f:
