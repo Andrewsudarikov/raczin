@@ -724,7 +724,7 @@ class OperationsWindow(Gtk.Window):
                     TestVar2 = int(TestVar2+AnswerData)
                 if TestVar3 == TestVar1:
                     TestVar3 = int(TestVar3-AnswerData)
-            # Checjking to make sure no wrong answer match the correct one
+            # Checjking to make sure no wrong answer matche the correct one
                 if TestVar1 == TestVar4:
                     TestVar1 = int(TestVar1-AnswerData)
                 if TestVar2 == TestVar4:
