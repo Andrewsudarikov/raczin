@@ -25,6 +25,7 @@ with open('raczin_data.txt', 'r') as f:
     mycsv = list(mycsv)
     Difficulty_Level = int(mycsv[0][6])
 
+# Setting up color mode variable
 global Color_Mode
 with open('raczin_data.txt', 'r') as f:
     mycsv = csv.reader(f)
@@ -155,6 +156,10 @@ class OperationsWindow(Gtk.Window):
         self.btnEasier.set_size_request(35, -1)
         self.Settings_DifficultyBox.pack_start(self.btnEasier, True, True, 0)
         self.btnEasier.connect("clicked", self.btnEasier_clicked)
+
+#       Setting up color mode container
+        self.Settings_ColorModeBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        Gtk.StyleContext.add_class(self.Settings_ColorModeBox.get_style_context(), "linked")       
 
 #       Setting up main window container
         self.MainContainer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -741,7 +746,7 @@ class OperationsWindow(Gtk.Window):
                     TestVar2 = int(TestVar2+AnswerData)
                 if TestVar3 == TestVar1:
                     TestVar3 = int(TestVar3-AnswerData)
-            # Checjking to make sure no wrong answer matche the correct one
+            # Checking to make sure no wrong answer matches the correct one
                 if TestVar1 == TestVar4:
                     TestVar1 = int(TestVar1-AnswerData)
                 if TestVar2 == TestVar4:
