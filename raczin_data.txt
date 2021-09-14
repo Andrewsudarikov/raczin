@@ -1,4 +1,4 @@
-Number in the system,task1,task2,task3,question1,answer,2
+Number in the system,task1,task2,task3,question1,1,2
 1,40 workers can build a country house in 8 days.,But the customer needs it built in 4 days., ,How many workers do you need?,80,8 is 2 times less than 4
 2,2 bags of rye weigh 100 kilos. A bag of barley,is 10 kilos lighter than a bag of rye., ,How much does a bag of barley weigh?,40,First find out the weight of 1 bag of rye
 3,My friend spends 40 cents a day on fizzy drinks,and water. , ,How many dollars does he spend on them a year?,146, There are 365 days in 1 year.
