@@ -897,11 +897,11 @@ class OperationsWindow(Gtk.Window):
             if TestVar4 == TestVar2:
                 TestVar4 = int(TestVar4-AnswerData)
 
-#           Applying labels to hint buttons
-            self.btn1.set_label(str(TestVar1))
-            self.btn2.set_label(str(TestVar2))
-            self.btn3.set_label(str(TestVar3))
-            self.btn4.set_label(str(TestVar4))
+#       Applying labels to hint buttons
+        self.btn1.set_label(str(TestVar1))
+        self.btn2.set_label(str(TestVar2))
+        self.btn3.set_label(str(TestVar3))
+        self.btn4.set_label(str(TestVar4))
 
 #   Operating Settings button
     def settings_clicked(self,btnSettings):
