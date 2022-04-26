@@ -1,4 +1,5 @@
 # Raczin
+
 This is mostly a learning project of a non-prorammer trying to learn Python. 
 > It's always better to learn while trying to build something constructive than to keep laboring through exercises. 
 
@@ -8,8 +9,8 @@ Raczin is a mental arhithmetics app built with GTK+ and Elementary OS aestheitcs
 
 Most of its exercises are based on an old Russian mental arithmetic textbook written by Alexander Raczinsky, hence the name of the app.  
 
-News and updates: 
------------------
-:: September 13, 2021: Raczin now works in all Ubuntu-based Linux distributions!
+## News and updates
 
-:: September 14, 2021: Added 5 more tasks, removed placeholders from tasks 1 and 2.
+**September 13, 2021**: Raczin now works in all Ubuntu-based Linux distributions!
+
+**September 14, 2021**: Added 5 more tasks, removed placeholders from tasks 1 and 2.
