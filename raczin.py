@@ -985,6 +985,7 @@ class OperationsWindow(Gtk.Window):
             self.lblDifficulty_Setting.set_label("NORM")
             self.HelperBox.hide()
             self.AnswerBox.show()
+            self.btnHint.show()
             self.btnEasier.set_sensitive(True)
 
     def btnEasier_clicked(self,btnEasier):
@@ -996,6 +997,7 @@ class OperationsWindow(Gtk.Window):
                 config.write(config_file)
             self.lblDifficulty_Setting.set_label("EASY")
             self.AnswerBox.hide()
+            self.btnHint.hide()
             self.HelperBox.show()
             self.btnEasier.set_sensitive(False)
         if Difficulty_Level == 3:
