@@ -1,13 +1,18 @@
 import csv
+import configparser
 import gi
 import random
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, Gio, Pango
 
+config = configparser.ConfigParser()
+config.read('raczin_conf.ini')
+
 # Reading the number of lines in the CSV table
-with open('raczin_data.txt', 'r') as f:
+with open('raczin_data.csv', 'r') as f:
     mycsv = csv.reader(f)
-    LimitMargin = len(list(mycsv)) - 1 #that's a correction value for the header
+    LimitMargin = len(list(mycsv)) - 1 
+    # this is the correction value for the header, the first line contains service info
 
 # Randomizing the task number shown on startup
 TaskNum = random.randint(3,int(LimitMargin))
@@ -19,17 +24,11 @@ CorrectAnswer = 0
 
 # Setting up the difficulty level
 global Difficulty_Level
-with open('raczin_data.txt', 'r') as f:
-    mycsv = csv.reader(f)
-    mycsv = list(mycsv)
-    Difficulty_Level = int(mycsv[0][6])
+Difficulty_Level = int(config.get('SETUP', 'diff_lvl'))
+print(Difficulty_Level)
 
 # Setting up color mode variable
-global Color_Mode
-with open('raczin_data.txt', 'r') as f:
-    mycsv = csv.reader(f)
-    mycsv = list(mycsv)
-    Color_Mode = int(mycsv[0][5])
+global ColorMode
 
 # Placeholders in case you need them
 TaskData_Placeholder_Text = "Here will be the description for the task number "+ str(TaskNum) +"."
@@ -39,7 +38,7 @@ lblHint_Placeholder_Text = "Here will be a hint for the task number "
 class OperationsWindow(Gtk.Window):
 
     def __init__(self):
-        global TaskNum, EasyMode_Rand, CorrectAnswer
+        global Difficulty_Level, TaskNum, EasyMode_Rand, CorrectAnswer
         Gtk.Window.__init__(self, title="Raczin")
 
 #       Main form properties
@@ -190,7 +189,7 @@ class OperationsWindow(Gtk.Window):
         self.TaskData2.set_alignment(0,0)
         self.TaskData2.modify_fg(Gtk.StateType(0), Gdk.color_parse('#3d211b'))
         self.TaskData2.modify_font(Pango.FontDescription("Garamond 12"))
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             TaskData_Text = mycsv[TaskNum][1]
@@ -211,7 +210,7 @@ class OperationsWindow(Gtk.Window):
         self.TaskQuestion.modify_fg(Gtk.StateType(0), Gdk.color_parse('#3d211b'))
         self.TaskQuestion.modify_font(Pango.FontDescription("Garamond italic 12"))
         self.TaskQuestion.set_line_wrap(True)
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             TaskQuestion_Text = mycsv[TaskNum][4]
@@ -307,7 +306,7 @@ class OperationsWindow(Gtk.Window):
         self.MainContainer.pack_start(self.HelperBox, False, True, 0)
 
 #       Setting up numbers on hint buttons
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             AnswerData = int(mycsv[TaskNum][5])
@@ -414,6 +413,28 @@ class OperationsWindow(Gtk.Window):
             self.btnPrev.set_sensitive(True)
             self.btnNext.set_sensitive(True)
 
+#       Checking the config file for difficulty level and configuring the interface accordingly
+        Difficulty_Level = int(config.get('SETUP', 'diff_lvl'))
+
+        if Difficulty_Level == 3:
+            self.lblDifficulty_Setting.set_label("HARD")
+            self.HelperBox.hide()           
+            self.btnHint.hide()
+            self.btnHarder.set_sensitive(False)
+            self.btnEasier.set_sensitive(True)
+        if Difficulty_Level == 2:
+            self.lblDifficulty_Setting.set_label("NORM")
+            self.HelperBox.hide()
+            self.btnHint.show()
+            self.btnHarder.set_sensitive(True)
+            self.btnEasier.set_sensitive(True)
+        if Difficulty_Level == 1:
+            self.AnswerBox.hide()
+            self.btnHint.hide()
+            self.HelperBox.show()
+            self.btnHarder.set_sensitive(True)
+            self.btnEasier.set_sensitive(False)
+
 # === OPERATIONS FOR HEADERBAR BUTTONS AND FIELDS ===
 
 #   Operating btnRand function
@@ -424,7 +445,7 @@ class OperationsWindow(Gtk.Window):
         self.btnAnswer.modify_bg(Gtk.StateType(0), Gdk.color_parse('#fbefce'))
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             TaskData_Text = mycsv[TaskNum][1]
@@ -451,7 +472,7 @@ class OperationsWindow(Gtk.Window):
 
 #       Ranodmizing numbers on hint buttons
         EasyMode_Rand = random.randint(1,4)
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             AnswerData = int(mycsv[TaskNum][5])
@@ -546,7 +567,7 @@ class OperationsWindow(Gtk.Window):
         global CorrectAnswer
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             LimitMargin = len(list(mycsv)) - 1
 
@@ -564,7 +585,7 @@ class OperationsWindow(Gtk.Window):
             TaskNum = int(calcString) - 1
             self.fldTask.set_text(str(TaskNum))
             self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-            with open('raczin_data.txt', 'r') as f:
+            with open('raczin_data.csv', 'r') as f:
                 mycsv = csv.reader(f)
                 mycsv = list(mycsv)
                 TaskData_Text = mycsv[TaskNum][1]
@@ -591,7 +612,7 @@ class OperationsWindow(Gtk.Window):
 
 #           Ranodmizing numbers on hint buttons
             EasyMode_Rand = random.randint(1,4)
-            with open('raczin_data.txt', 'r') as f:
+            with open('raczin_data.csv', 'r') as f:
                 mycsv = csv.reader(f)
                 mycsv = list(mycsv)
                 AnswerData = int(mycsv[TaskNum][5])
@@ -686,7 +707,7 @@ class OperationsWindow(Gtk.Window):
         global CorrectAnswer
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             LimitMargin = len(list(mycsv)) - 1
 
@@ -704,7 +725,7 @@ class OperationsWindow(Gtk.Window):
             TaskNum = int(calcString) + 1
             self.fldTask.set_text(str(TaskNum))
             self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-            with open('raczin_data.txt', 'r') as f:
+            with open('raczin_data.csv', 'r') as f:
                 mycsv = csv.reader(f)
                 mycsv = list(mycsv)
                 TaskData_Text = mycsv[TaskNum][1]
@@ -823,7 +844,7 @@ class OperationsWindow(Gtk.Window):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             TaskData_Text = mycsv[TaskNum][1]
@@ -950,29 +971,39 @@ class OperationsWindow(Gtk.Window):
         global Difficulty_Level
         if Difficulty_Level == 2:
             Difficulty_Level = 3
-            self.lblDifficulty_Setting.set_label("HARD")
-            with open('raczin_data.txt', 'r') as f:
-                setcsv = csv.writer
-                
+            config.set('SETUP','diff_lvl','3')
+            with open('raczin_conf.ini', "w") as config_file:
+                config.write(config_file)
+            self.lblDifficulty_Setting.set_label("HARD")           
             self.btnHint.hide()
             self.btnHarder.set_sensitive(False)
         if Difficulty_Level == 1:
             Difficulty_Level = 2
+            config.set('SETUP','diff_lvl','2')
+            with open('raczin_conf.ini', "w") as config_file:
+                config.write(config_file)
             self.lblDifficulty_Setting.set_label("NORM")
             self.HelperBox.hide()
             self.AnswerBox.show()
             self.btnEasier.set_sensitive(True)
+
     def btnEasier_clicked(self,btnEasier):
         global Difficulty_Level
         if Difficulty_Level == 2:
             Difficulty_Level = 1
+            config.set('SETUP','diff_lvl','1')
+            with open('raczin_conf.ini', "w") as config_file:
+                config.write(config_file)
             self.lblDifficulty_Setting.set_label("EASY")
             self.AnswerBox.hide()
             self.HelperBox.show()
             self.btnEasier.set_sensitive(False)
         if Difficulty_Level == 3:
             Difficulty_Level = 2
-            self.lblDifficulty_Setting.set_label("OKAY")
+            config.set('SETUP','diff_lvl','2')
+            with open('raczin_conf.ini', "w") as config_file:
+                config.write(config_file)
+            self.lblDifficulty_Setting.set_label("NORM")
             self.btnHint.show()
             self.btnHarder.set_sensitive(True)
 
@@ -983,7 +1014,7 @@ class OperationsWindow(Gtk.Window):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         self.Hint_Popover.set_relative_to(btnHint)
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             lblHint_Text = mycsv[TaskNum][6]
@@ -996,7 +1027,7 @@ class OperationsWindow(Gtk.Window):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         AnswerString = self.AnswerEntry.get_text()
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             AnswerData = mycsv[TaskNum][5]
@@ -1013,7 +1044,7 @@ class OperationsWindow(Gtk.Window):
         calcString = self.fldTask.get_text()
         TaskNum = int(calcString)
         AnswerString = self.AnswerEntry.get_text()
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             AnswerData = mycsv[TaskNum][5]
@@ -1033,7 +1064,7 @@ class OperationsWindow(Gtk.Window):
         TaskNum = int(calcString) + 1
         self.fldTask.set_text(str(TaskNum))
         self.lblTaskNumber.set_text("Task No. "+ str(TaskNum))
-        with open('raczin_data.txt', 'r') as f:
+        with open('raczin_data.csv', 'r') as f:
             mycsv = csv.reader(f)
             mycsv = list(mycsv)
             TaskData_Text = mycsv[TaskNum][1]
