@@ -22,3 +22,9 @@ Most of its exercises are based on an old Russian mental arithmetic textbook wri
 * Remove redundant requirements
 * Convert the **raczin_data** file from `.txt` to `.csv` and update the code accordingly
 * Write the *difficulty setting* into the CSV table and read it at launch.
+
+**April 27, 2022**:
+
+* Create a `raczin_conf.ini` file.
+* Configure the **Configparser**. 
+* Write dificulty settings into config and read them at launch.
