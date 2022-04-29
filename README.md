@@ -27,4 +27,4 @@ Most of its exercises are based on an old Russian mental arithmetic textbook wri
 
 * Create a `raczin_conf.ini` file.
 * Configure the **Configparser**. 
-* Write dificulty settings into config and read them at launch.
+* Write difficulty settings into config and read them at launch.
