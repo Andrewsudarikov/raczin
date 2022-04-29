@@ -5,6 +5,7 @@ import random
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, Gio, Pango
 
+# Declare ConfigParser, read the configuration file into memory
 config = configparser.ConfigParser()
 config.read('raczin_conf.ini')
 
@@ -971,6 +972,7 @@ class OperationsWindow(Gtk.Window):
         global Difficulty_Level
         if Difficulty_Level == 2:
             Difficulty_Level = 3
+            # write the new difficulty setting into config
             config.set('SETUP','diff_lvl','3')
             with open('raczin_conf.ini', "w") as config_file:
                 config.write(config_file)
